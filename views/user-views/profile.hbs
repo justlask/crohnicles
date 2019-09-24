@@ -1,0 +1,30 @@
+<h1>Crohnicles of {{user.username}}</h1>
+<main>
+  <aside class="dash">
+    <img src="{{user.profilePic}}" alt="Profile Pic" id="profilePic"><br>
+    <p>{{user.illness}}</p>
+    <p>{{user.medications}}</p>
+    <a href="/user/friends">Friends</a><br>
+    <a href="/user/findfriends">Find Friends</a><br>
+    <a href="/groups">Find Groups</a><br>
+    <a href="/events">Find Events</a><br>
+    <a href="/user/edit">Edit Profile</a>
+  </aside>
+  <div class="body">
+    <div>
+      <p>{{user.name}}</p>
+      <p>{{user.bio}}</p>
+      <form action="/post/create">
+        <label for="post"></label>
+        <textarea name="post" id="post" cols="30" rows="10" placeholder="what's on your mind?"></textarea>
+        <button>Post</button>
+      </form>
+    </div>
+
+    <div>
+      <p>show users posts and post from friends.</p>
+
+
+    </div>
+  </div>
+</main>

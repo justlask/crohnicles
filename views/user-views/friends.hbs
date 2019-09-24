@@ -1,0 +1,16 @@
+<h1>{{user.username}}'s friends</h1>
+
+<div class="users">
+
+{{#each friends}}
+  <div class="user">
+    <a href="/user/profile/{{username}}">{{username}}</a>
+    <img src="{{profilePic}}" alt="" class="userPic">
+    <form action="/user/profile/removefriend" method="POST">
+      <input type="hidden" name="friendID" value={{id}}>
+      <button>Remove Friend</button>
+    </form>
+  </div>
+
+{{/each}}
+</div>

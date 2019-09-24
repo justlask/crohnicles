@@ -1,0 +1,27 @@
+<h1>EDIT YO SHIT</h1>
+
+
+<form action="/user/edit" method="POST" enctype="multipart/form-data">
+
+  <label for="profilePic">Profile Picture</label>
+  <input type="file" name="photo"><br>
+
+  <label for="name">Name</label>
+  <input type="text" name="name"><br>
+
+  <label for="bio">Bio</label>
+  <textarea name="bio" id="bio" cols="30" rows="10"></textarea><br>
+
+  <label for="email">Email</label>
+  <input type="email" name="email" id="email"><br>
+
+  <label for="illness">Illnesses/Conditions:</label>
+  <input type="text" id="illness" placeholder="illness/condition">
+  <button type="button">Add Another</button><br>
+
+  <label for="medication">Medications:</label>
+  <input type="text" name="medication">
+  <button type="button">Add Another</button><br>
+
+  <button type="submit">submit</button>
+</form>
