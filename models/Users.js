@@ -10,7 +10,7 @@ const userSchema = new Schema({
   friends: [ { type : Schema.Types.ObjectId, ref: 'User' } ],
   bio: String,
   illness: [ {type: String} ],
-  medications: [ {type: String} ],
+  medications: [ String ],
   status: { type: String,
     enum : ["Pending Confirmation", "Active"],
     default: "Pending Confirmation"

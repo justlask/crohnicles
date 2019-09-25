@@ -51,6 +51,13 @@ main {
   display: flex;
   flex-direction: column; }
 
+.profile-edit {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center; }
+
 .body {
   width: 80vw;
   display: flex;

@@ -1,13 +1,14 @@
 <h1>EDIT YO SHIT</h1>
 
 
-<form action="/user/edit" method="POST" enctype="multipart/form-data">
+<div class="profile-edit">
+  <form action="/user/edit" method="POST" enctype="multipart/form-data">
 
   <label for="profilePic">Profile Picture</label>
   <input type="file" name="photo"><br>
 
   <label for="name">Name</label>
-  <input type="text" name="name"><br>
+  <input type="text" name="name" value={{user.name}}><br>
 
   <label for="bio">Bio</label>
   <textarea name="bio" id="bio" cols="30" rows="10"></textarea><br>
@@ -15,16 +16,27 @@
   <label for="email">Email</label>
   <input type="email" name="email" id="email"><br>
 
-  <label for="illness">Illnesses/Conditions:</label>
-  <input type="text" name="illness" id="illness" placeholder="illness/condition">
-  <button type="button">Add Another</button><br>
-
-  <label for="medication">Medications:</label>
-  <input type="text" name="medication">
-  <button type="button">Add Another</button><br>
-
   <button type="submit">submit</button>
 </form>
+
+<form action="/user/edit/conditions" method="POST">
+  <label for="illness">Illnesses/Conditions:</label><br>
+  {{#each user.illness}}
+    <input type="checkbox" name="remove" id="{{this}}" value="{{this}}">{{this}}<br>
+  {{/each}}
+  <input type="text" name="illness" id="illness" placeholder="illness/condition">
+  <button>Update</button><br>
+</form>
+
+<form action="/user/edit/medications" method="POST">
+  <label for="medication">Medications:</label><br>
+  {{#each user.medications}}
+    <input type="checkbox" name="remove" id="{{this}}" value={{this}}>{{this}}<br>
+  {{/each}}
+  <input type="text" name="medication" placeholder="add another">
+  <button>Update</button><br>
+</form>
+
 
 <form action="/user/delete" method="POST">
   <p>Delete Account</p>
@@ -32,3 +44,8 @@
   <input type="password" name="password" required>
   <button>Delete Account</button>
 </form>
+</div>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>

@@ -1,1 +1,24 @@
-<h1>VIEW ALL EVENTS!</h1>
+<nav>
+  <a href="/events/create">Create An Event</a>
+</nav>
+
+
+<div class="body">
+    {{#each groups}}
+      <div class="single">
+      <div>
+        <a href="/groups/{{id}}"><h1>{{name}}</h1></a>
+        <img src="{{groupImage}}" alt="">
+        <p>{{summary}}</p>
+        <a href="/user/profile/{{admin.id}}"><p>{{admin.username}}</p></a>
+        <ul>
+        {{#each members}}
+          <a href="/user/profile/{{id}}"><li>{{username}}</li></a>
+        {{/each}}
+        </ul>
+        {{location.address}}
+        {{location.city}}, {{location.state}} {{location.zipcode}}
+      </div>
+      </div> 
+    {{/each}}
+</div>

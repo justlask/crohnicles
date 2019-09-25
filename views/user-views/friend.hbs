@@ -1,11 +1,22 @@
-<h1>YOUR FRIENDS PAGE</h1>
+<h1>Crohnicles of <a href="/user/profile/{{user.id}}">{{user.username}}</a></h1>
 
-<a href="/user/profile/{{user.id}}"><h1>{{user.username}}</h1></a>
     <img src="{{user.profilePic}}" alt="Profile Pic" id="profilePic"><br>
-    <p>{{user.illness}}</p>
-    <p>{{user.medications}}</p>
+
     <p>{{user.name}}</p>
     <p>{{user.bio}}</p>
+
+    <ul>
+      <li>Conditions:</li>
+      {{#each user.illness}}
+        <li>{{this}}</li>
+      {{/each}}
+    </ul>
+    <ul>
+      <li>Medications</li>
+      {{#each user.medications}}
+        <li>{{this}}</li>
+      {{/each}}
+    </ul>
 
 {{#each posts}}
   <div class="single">

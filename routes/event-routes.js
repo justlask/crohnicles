@@ -17,6 +17,19 @@ router.get('/', (req,res,next) => {
   res.render('event-views/viewall')
 })
 
+router.get('/create', (req, res, next) => {
+  res.render('group-views/create')
+})
+
+
+router.get('/:id', (req,res,next) => {
+
+  Group.findById(req.params.id).populate('members').populate('admin').then(data => {
+    res.render('group-views/viewone', {group: data})
+  }).catch(err => next(err))
+})
+
+
 
 
 module.exports = router;

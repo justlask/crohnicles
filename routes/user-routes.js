@@ -64,7 +64,7 @@ router.get('/profile', (req,res,next) => {
     // Post.find({ authorID: {$in: req.user.friends }})
     Post.find({ $or: [ { authorID: { $in: req.user.friends } }, { authorID: req.user.id}]})
     .then(data => {
-        res.render('user-views/profile', {posts: data})
+        res.render('user-views/profile', {posts: data.reverse()})
     }).catch(err => next(err))
 })
 
@@ -83,7 +83,7 @@ router.get('/profile/:id', (req,res,next) => {
 
   User.findById( req.params.id ).then(data =>
     Post.find({authorID: data.id}).then(posts => {
-      res.render('user-views/friend', {user: data, posts: posts})
+      res.render('user-views/friend', {user: data, posts: posts.reverse()})
     })
     )
 })
@@ -110,7 +110,7 @@ router.get('/edit', (req,res,next) => {
 })
 
 router.post('/edit', uploadCloud.single('photo'),(req,res,next) => {
-  console.log(req.body)
+  
   //profile changes post will go here
   let userObj = {}
   if (req.file) { userObj.profilePic = req.file.url};
@@ -118,9 +118,6 @@ router.post('/edit', uploadCloud.single('photo'),(req,res,next) => {
   if (req.body.bio) userObj.bio = req.body.bio;
   if (req.body.email) userObj.email = req.body.email;
   if (req.body.illness) userObj.illness = req.body.illness
-  //{$push: {illness: req.body.illness}}
-  if (req.body.medication) userObj.medications = req.body.medication;
-  //{$push: {medications: req.body.medication}}
 
   User.findByIdAndUpdate(req.user.id, userObj).then(data => {
     res.redirect('/user/profile')
@@ -141,6 +138,36 @@ router.post("/delete", (req,res,next) => {
     req.logout();
   }).catch(err => next(err))
 });
+
+
+router.post('/edit/medications', (req,res,next) => {
+  if (req.body.medication) {
+    User.findByIdAndUpdate( req.user.id, {$push: {medications: req.body.medication}}).then(
+      data => {
+        res.redirect('/user/edit')
+      })
+  }
+  else {
+    User.findByIdAndUpdate(req.user.id, {$pull: {medications:{ $in: req.body.remove}}}).then(data =>{
+      res.redirect('/user/edit')
+    })
+  }
+})
+
+router.post('/edit/conditions', (req,res,next) => {
+  if (req.body.illness) {
+    User.findByIdAndUpdate( req.user.id, {$push: {illness: req.body.illness}}).then(
+      data => {
+        res.redirect('/user/edit')
+      })
+  }
+  else {
+    User.findByIdAndUpdate(req.user.id, {$pull: {illness:{ $in: req.body.remove}}}).then(
+      data =>{
+      res.redirect('/user/edit')
+    })
+  }
+})
 
 
 module.exports = router;
