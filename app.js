@@ -152,5 +152,7 @@ app.use('/', index);
 
 app.use('/user', require('./routes/user-routes'))
 
+app.use('/post', require('./routes/post-routes'))
+
 
 module.exports = app;

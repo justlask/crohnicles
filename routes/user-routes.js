@@ -59,17 +59,14 @@ router.use((req,res,next) => {
 }); 
 
 
-
-
-//WORKING ON THIS//////
 router.get('/profile', (req,res,next) => {
   //get all posts from user and user friends
-    Post.find(req.user.friends).then(data => {
-
+    Post.find({ authorID: {$in: req.user.friends } })
+    .then(data => {
         console.log(data)
+        res.render('user-views/profile', {posts: data})
 
     }).catch(err => next(err))
-  res.render('user-views/profile')
 })
 
 router.post('/logout', (req, res, next) => {
@@ -83,8 +80,14 @@ router.get('/findfriends', (req,res,next) => {
   })
 })
 
-router.get('/profile/:username', (req,res,next) => {
-  res.render('user-views/friend')
+router.get('/profile/:id', (req,res,next) => {
+
+  User.findById( req.params.id ).then(data =>
+    Post.find({authorID: data.id}).then(posts => {
+      console.log(posts[0].image)
+      res.render('user-views/friend', {user: data, posts: posts})
+    })
+    )
 })
 
 router.post('/profile/addfriend', (req,res,next) => {
@@ -109,15 +112,17 @@ router.get('/edit', (req,res,next) => {
 })
 
 router.post('/edit', uploadCloud.single('photo'),(req,res,next) => {
-  console.log(req.file)
+  console.log(req.body)
   //profile changes post will go here
   let userObj = {}
   if (req.file) { userObj.profilePic = req.file.url};
   if (req.body.name) userObj.name = req.body.name;
   if (req.body.bio) userObj.bio = req.body.bio;
   if (req.body.email) userObj.email = req.body.email;
-  if (req.body.illness) userObj.illness = req.body.illness;
+  if (req.body.illness) userObj.illness = req.body.illness
+  //{$push: {illness: req.body.illness}}
   if (req.body.medication) userObj.medications = req.body.medication;
+  //{$push: {medications: req.body.medication}}
 
   User.findByIdAndUpdate(req.user.id, userObj).then(data => {
     res.redirect('/user/profile')
@@ -133,9 +138,11 @@ router.post('/profile/removefriend', (req,res,next) => {
   }).catch(err => next(err))
 });
 
-
-
-
+router.post("/delete", (req,res,next) => {
+  User.findByIdAndRemove(req.user.id).then(data => {
+    req.logout();
+  }).catch(err => next(err))
+});
 
 
 module.exports = router;

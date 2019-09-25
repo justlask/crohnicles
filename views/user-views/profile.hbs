@@ -14,17 +14,44 @@
     <div>
       <p>{{user.name}}</p>
       <p>{{user.bio}}</p>
-      <form action="/post/create">
-        <label for="post"></label>
-        <textarea name="post" id="post" cols="30" rows="10" placeholder="what's on your mind?"></textarea>
-        <button>Post</button>
-      </form>
+    </div>
+
+    <div class="post">
+        <form action="/post/create" method="POST" enctype="multipart/form-data">
+          <p>Share something...</p>
+
+          <label for="type">Type</label>
+          <select name="type" id="type">
+            <option value="Personal">Personal</option>
+            <option value="Health">Health</option>
+          </select><br>
+
+          <label for="title">Title</label>
+          <input type="text" name="title"><br>
+
+          <label for="content">Content</label>
+          <textarea name="content" id="content" cols="30" rows="10"></textarea><br>
+
+          <label for="photo">Add Picture</label>
+          <input type="file" name="photo"><br>
+
+          <button type="submit">submit</button>
+        </form>
+        
     </div>
 
     <div>
       <p>show users posts and post from friends.</p>
 
+      {{#each posts}}
+        <div class="single">
+          <h1>{{title}}</h1>
+          <a href="/user/profile/{{authorID}}"><h3>{{author}}</h3></a>
+          <p>{{body}}</p>
+          <img src="{{image}}" alt="">
 
+        </div>
+      {{/each}}
     </div>
   </div>
 </main>

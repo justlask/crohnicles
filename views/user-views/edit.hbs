@@ -16,7 +16,7 @@
   <input type="email" name="email" id="email"><br>
 
   <label for="illness">Illnesses/Conditions:</label>
-  <input type="text" id="illness" placeholder="illness/condition">
+  <input type="text" name="illness" id="illness" placeholder="illness/condition">
   <button type="button">Add Another</button><br>
 
   <label for="medication">Medications:</label>
@@ -24,4 +24,11 @@
   <button type="button">Add Another</button><br>
 
   <button type="submit">submit</button>
+</form>
+
+<form action="/user/delete" method="POST">
+  <p>Delete Account</p>
+  <label for="password">Password</label>
+  <input type="password" name="password" required>
+  <button>Delete Account</button>
 </form>

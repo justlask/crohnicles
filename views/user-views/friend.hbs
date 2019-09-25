@@ -1,1 +1,19 @@
 <h1>YOUR FRIENDS PAGE</h1>
+
+<a href="/user/profile/{{user.id}}"><h1>{{user.username}}</h1></a>
+    <img src="{{user.profilePic}}" alt="Profile Pic" id="profilePic"><br>
+    <p>{{user.illness}}</p>
+    <p>{{user.medications}}</p>
+    <p>{{user.name}}</p>
+    <p>{{user.bio}}</p>
+
+{{#each posts}}
+  <div class="single">
+    <h1>{{title}}</h1>
+    <a href="/user/profile/{{authorID}}"><h3>{{author}}</h3></a>
+    <p>{{body}}</p>
+    <img src="{{image}}" alt="">
+  </div>
+{{/each}}
+
+
