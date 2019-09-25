@@ -22,18 +22,18 @@ router.post('/signup', (req,res,next) => {
   let username = req.body.username
   let password = req.body.password
   let email = req.body.email
+  let type = req.body.type
 
   const saltRounds = 10;
   const salt  = bcrypt.genSaltSync(saltRounds);
   const hash = bcrypt.hashSync(password, salt);
 
-  
-
   User.create({
     username: username,
     password: hash,
     email: email,
-    confirmationCode: token
+    confirmationCode: token,
+    type: type
   }).then(data => {
     res.redirect("/user/login")
 
@@ -61,11 +61,10 @@ router.use((req,res,next) => {
 
 router.get('/profile', (req,res,next) => {
   //get all posts from user and user friends
-    Post.find({ authorID: {$in: req.user.friends } })
+    // Post.find({ authorID: {$in: req.user.friends }})
+    Post.find({ $or: [ { authorID: { $in: req.user.friends } }, { authorID: req.user.id}]})
     .then(data => {
-        console.log(data)
         res.render('user-views/profile', {posts: data})
-
     }).catch(err => next(err))
 })
 
@@ -84,7 +83,6 @@ router.get('/profile/:id', (req,res,next) => {
 
   User.findById( req.params.id ).then(data =>
     Post.find({authorID: data.id}).then(posts => {
-      console.log(posts[0].image)
       res.render('user-views/friend', {user: data, posts: posts})
     })
     )

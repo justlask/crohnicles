@@ -1,0 +1,20 @@
+<h1>VIEW A GROUP</h1>
+
+
+
+
+<div class="body">
+      <div class="single">
+        <a href="/groups/{{group.id}}"><h1>{{group.name}}</h1></a>
+        <img src="{{group.groupImage}}" alt="">
+        <p>{{group.summary}}</p>
+        <a href="/user/profile/{{group.admin.id}}"><p>{{group.admin.username}}</p></a>
+        <ul>
+        {{#each group.members}}
+          <a href="/user/profile/{{id}}"><li>{{username}}</li></a>
+        {{/each}}
+        </ul>
+        {{group.location.address}}
+        {{group.location.city}}, {{group.location.state}} {{group.location.zipcode}}
+      </div>
+</div>

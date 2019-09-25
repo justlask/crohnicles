@@ -1,0 +1,24 @@
+<h1>CREATE A GROuP</h1>
+
+
+
+
+<form action="/groups/create" method="POST" enctype="multipart/form-data">
+  <label for="name">name</label>
+  <input type="text" name="name" id="name" placeholder="group name" required><br>
+
+  <label for="photo">group image</label>
+  <input type="file" name="photo" id="photo"><br>
+
+  <label for="summary">summary</label>
+  <textarea name="summary" id="summary" cols="30" rows="10" placeholder="tell us about your group!" required></textarea><br>
+
+  <label for="location">Location:</label>
+    <input type="text" name="address" id="address" placeholder="123 this street" required>
+    <input type="text" name="city" id="city" placeholder="City" required>
+    <input type="text" name="state" id="state" placeholder="State" required>
+    <input type="text" name="zipcode" id="zipcode" placeholder="12345" required>
+
+  <button>Create</button>
+
+</form>

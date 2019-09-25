@@ -154,5 +154,8 @@ app.use('/user', require('./routes/user-routes'))
 
 app.use('/post', require('./routes/post-routes'))
 
+app.use('/groups', require('./routes/group-routes'));
+
+app.use('/events', require('./routes/event-routes'))
 
 module.exports = app;

@@ -6,6 +6,15 @@ const uploadCloud = require('../config/cloudinary.js');
 
 
 
+router.use((req,res,next) => {
+  if (!req.user) {
+    res.redirect("/user/login");
+  }
+  next();
+}); 
+
+
+
 router.post('/create',uploadCloud.single('photo'), (req,res,next) => {
   let postObj = {}
 
@@ -14,10 +23,6 @@ router.post('/create',uploadCloud.single('photo'), (req,res,next) => {
   postObj.date= new Date,
   postObj.timestamps= true,
   postObj.body = req.body.content
-
-  console.log(req.body.content)
-  console.log(req.body)
-  console.log(req.body.title)
 
   if (req.body.title) postObj.title = req.body.title
   if (req.file)  postObj.image = req.file.url;
