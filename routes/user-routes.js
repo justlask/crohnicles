@@ -62,8 +62,14 @@ router.use((req,res,next) => {
 router.get('/profile', (req,res,next) => {
   //get all posts from user and user friends
     // Post.find({ authorID: {$in: req.user.friends }})
-    Post.find({ $or: [ { authorID: { $in: req.user.friends } }, { authorID: req.user.id}]})
-    .then(data => {
+    Post.find({ $or: [ { authorID: { $in: req.user.friends } }, { authorID: req.user.id}]}).then(data => {
+      data.forEach(thing => { 
+        thing.iAmAdmin = false;
+
+        if(thing.authorID.equals(req.user.id)){
+          thing.iAmAdmin = true;
+        }
+      })
         res.render('user-views/profile', {posts: data.reverse()})
     }).catch(err => next(err))
 })

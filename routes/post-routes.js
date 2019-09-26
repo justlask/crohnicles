@@ -33,6 +33,14 @@ router.post('/create',uploadCloud.single('photo'), (req,res,next) => {
 })
 
 
+router.post('/delete/:id', (req,res,next) => {
+
+  Post.findByIdAndDelete(req.params.id).then( data => {
+    res.redirect('/user/profile')
+  })
+})
+
+
 
 
 

@@ -61,6 +61,16 @@
           <p>{{body}}</p>
           <img src="{{image}}" alt="">
 
+          {{#if iAmAdmin}}
+            <form action="/post/edit/{{id}}" method="GET">
+              <button>Edit</button>
+            </form>
+            <form action="/post/delete/{{id}}" method="POST">
+              <button>delete</button>
+            </form>
+          {{/if}}
+
+          
         </div>
       {{/each}}
     </div>
