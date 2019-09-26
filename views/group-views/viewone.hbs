@@ -14,9 +14,13 @@
         {{group.location.address}}
         {{group.location.city}}, {{group.location.state}} {{group.location.zipcode}}
 
-        <form action="/groups/join" method="POST">
+
+
+        {{#unless isMember}}
+        <form action="/groups/join/{{group.id}}" method="POST">
             <button>Join</button>
         </form>
+        {{/unless}}
 
         <div>
           {{#if admin}}

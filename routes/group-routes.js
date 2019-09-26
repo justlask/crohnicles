@@ -48,9 +48,14 @@ router.get('/:id', (req,res,next) => {
       iAmAdmin = true;
     }
 
+    let isMember = false
 
-    // data.admin.isGroupAdmin = true
-    res.render('group-views/viewone', {group: data, admin: iAmAdmin})
+    data.members.forEach(member => {
+      if (req.user._id.equals(member._id)) {
+        isMember = true
+      }
+    })
+    res.render('group-views/viewone', {group: data, admin: iAmAdmin, isMember: isMember})
   }).catch(err => next(err))
 })
 
@@ -106,5 +111,19 @@ router.post('/remove/:id/:groupID', (req,res,next) => {
   }).catch(err => next(err))
 })
 
+
+
+
+router.post('/join/:id', (req,res,next) => {
+
+  Group.findByIdAndUpdate(req.params.id, {$push: {members: req.user.id}})
+  .then(data => {
+      res.redirect(`/groups/${req.params.id}`)
+    }
+  )
+  
+
+
+})
 
 module.exports = router;
