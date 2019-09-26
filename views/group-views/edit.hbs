@@ -1,0 +1,36 @@
+Edit a group
+<form action="/groups/edit/{{id}}" method="POST" enctype="multipart/form-data">
+
+
+  <label for="name">name</label>
+  <input type="text" name="name" id="name" placeholder="group name"><br>
+
+  <label for="photo">group image</label>
+  <input type="file" name="photo" id="photo"><br>
+
+  <label for="summary">summary</label>
+  <textarea name="summary" id="summary" cols="30" rows="10" placeholder="tell us about your group!"></textarea><br>
+
+  <label for="location">Location:</label>
+    <input type="text" name="address" id="address" placeholder="123 this street">
+    <input type="text" name="city" id="city" placeholder="City">
+    <input type="text" name="state" id="state" placeholder="State">
+    <input type="text" name="zipcode" id="zipcode" placeholder="12345">
+
+  <button>Update</button>
+
+</form>
+<div>
+    {{#if admin}}
+    <ul>
+      {{#each group.members}}
+          <li>
+            {{username}}
+              <form action="/groups/remove/{{id}}/{{../group._id}}" method="POST">
+              <button>remove</button>
+            </form>
+          </li>
+      {{/each}}
+    </ul>
+  {{/if}}
+</div>

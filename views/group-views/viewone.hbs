@@ -1,7 +1,4 @@
-<h1>Crohnicles of <a href="/groups/{{group.id}}">{{group.name}}</a></h1>
-
-
-
+<h1>Crohnicles of the group <a href="/groups/{{group.id}}">{{group.name}}</a></h1>
 
 <div class="body">
       <div class="single">
@@ -16,5 +13,18 @@
         </ul>
         {{group.location.address}}
         {{group.location.city}}, {{group.location.state}} {{group.location.zipcode}}
+
+        <form action="/groups/join" method="POST">
+            <button>Join</button>
+        </form>
+
+        <div>
+          {{#if admin}}
+            <a href="/groups/edit/{{group.id}}">Edit</a>
+          {{/if}}
+        </div>
       </div>
+
+
+
 </div>

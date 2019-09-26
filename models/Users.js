@@ -17,7 +17,7 @@ const userSchema = new Schema({
 },
   confirmationCode: String,
   profilePic: String,
-  type: {type: String, enum: ["Patient", "Ally", "Caregiver", "Professional"]}
+  type: {type: String, enum: ["Patient", "Ally", "Caregiver", "Professional"]},
 })
 
 const User = mongoose.model("User", userSchema)

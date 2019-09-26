@@ -32,7 +32,6 @@ router.post('/create',uploadCloud.single('photo'), (req,res,next) => {
   }
   if (req.file) { newGroup.groupImage = req.file.url};
   Group.create(newGroup).then(data => {
-    console.log(data)
     let id = data.id
     res.redirect(`/groups/${id}`)
   })
@@ -42,7 +41,16 @@ router.post('/create',uploadCloud.single('photo'), (req,res,next) => {
 router.get('/:id', (req,res,next) => {
 
   Group.findById(req.params.id).populate('members').populate('admin').then(data => {
-    res.render('group-views/viewone', {group: data})
+
+    let iAmAdmin = false;
+
+    if(req.user._id.equals(data.admin._id)){
+      iAmAdmin = true;
+    }
+
+
+    // data.admin.isGroupAdmin = true
+    res.render('group-views/viewone', {group: data, admin: iAmAdmin})
   }).catch(err => next(err))
 })
 
@@ -52,6 +60,28 @@ router.get('/:id', (req,res,next) => {
 router.get('/', (req,res,next) => {
   Group.find().populate('admin').populate('members').then(data => {
     res.render('group-views/viewall', {groups: data})
+  })
+})
+
+
+
+router.get('/edit/:id', (req,res,next) => {
+  Group.findById(req.params.id).populate('members').populate('admin').then(data => {
+    let iAmAdmin = false;
+
+    if(req.user._id.equals(data.admin._id)){
+      iAmAdmin = true;
+    }
+      res.render("group-views/edit", {group: data, admin: iAmAdmin})
+  })
+})
+
+
+router.post('/remove/:id/:groupID', (req,res,next) => {
+  let memberID = req.params.id
+  let groupID = req.params.groupID
+  Group.findByIdAndUpdate(groupID, { $pull: { members: memberID }}).then(data => {
+    res.redirect(`/groups/${req.params.groupID}`)
   })
 })
 
