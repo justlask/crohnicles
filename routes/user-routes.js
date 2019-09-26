@@ -4,6 +4,7 @@ const User  = require('../models/Users')
 const bcrypt     = require("bcryptjs");
 const passport = require("passport");
 const Post     = require('../models/Posts')
+const Group     = require('../models/Groups')
 
 const uploadCloud = require('../config/cloudinary.js');
 
@@ -104,6 +105,11 @@ router.post('/profile/addfriend', (req,res,next) => {
 })
 
 
+
+
+
+
+
 router.get('/friends', (req,res,next) => {
   User.findById(req.user.id).populate('friends').then(data => {
     res.render('user-views/friends', {friends: data.friends})
@@ -175,5 +181,12 @@ router.post('/edit/conditions', (req,res,next) => {
   }
 })
 
+
+
+router.get('/groups', (req,res,next) => {
+  Group.find({ members: { $in: req.user.id} }).then(data => {
+    res.render('user-views/groups' , {groups: data})
+  })
+})
 
 module.exports = router;

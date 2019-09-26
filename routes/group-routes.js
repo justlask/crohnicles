@@ -63,7 +63,7 @@ router.get('/:id', (req,res,next) => {
 
 
 router.get('/', (req,res,next) => {
-  Group.find().populate('admin').populate('members').then(data => {
+  Group.find({ members: { $nin: req.user.id} }).populate('admin').populate('members').then(data => {
     res.render('group-views/viewall', {groups: data})
   })
 })
@@ -121,9 +121,6 @@ router.post('/join/:id', (req,res,next) => {
       res.redirect(`/groups/${req.params.id}`)
     }
   )
-  
-
-
 })
 
 module.exports = router;
