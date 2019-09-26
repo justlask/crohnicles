@@ -41,6 +41,49 @@ router.post('/delete/:id', (req,res,next) => {
 })
 
 
+router.get('/edit/:id', (req,res,next) => {
+  Post.findById(req.params.id).then(data => {
+    let isAuthor = false;
+
+    if(data.authorID.equals(req.user.id)){
+      isAuthor = true;
+      res.render("post-views/edit", {posts: data, isAuthor: isAuthor})
+    }
+    else {
+      res.redirect('/user/profile')
+    }
+  })
+});
+
+
+router.post('/edit/:id', uploadCloud.single('photo'), (req,res,next) => {
+
+  let postObj = {}
+  if (req.file) { postObj.image = req.file.url};
+  if (req.body.title) postObj.title = req.body.title;
+  if (req.body.content) postObj.body = req.body.content;
+
+
+  Post.findByIdAndUpdate(req.params.id, postObj).then(
+    data => {
+      console.log(data)
+      res.redirect(`/user/profile`)
+    }
+  )
+
+})
+
+
+router.get('/single/:id', (req,res,next) => {
+
+  Post.findById(req.params.id).then(data => {
+    console.log(data)
+    res.render('post-views/view', {posts: data})
+  })
+})
+
+
+
 
 
 

@@ -1,0 +1,12 @@
+<h1>{{posts.title}} from <a href="/user/profile/{{posts.authorID}}">{{posts.author}}</a></h1>
+
+<div class="body">
+  <div class="single">
+    <h1>{{posts.title}}</h1>
+    {{#if posts.image}}
+    <img src="{{posts.image}}" alt="">
+    {{/if}}
+    <p>{{posts.date}}</p>
+    <p>{{posts.body}}</p>
+  </div>
+</div>

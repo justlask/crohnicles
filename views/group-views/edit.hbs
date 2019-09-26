@@ -1,21 +1,25 @@
 Edit a group
-<form action="/groups/edit/{{id}}" method="POST" enctype="multipart/form-data">
+
+
+
+
+<form action="/groups/edit/{{group.id}}" method="POST" enctype="multipart/form-data">
 
 
   <label for="name">name</label>
-  <input type="text" name="name" id="name" placeholder="group name"><br>
+  <input type="text" name="name" id="name" placeholder="group name" value="{{group.name}}"><br>
 
   <label for="photo">group image</label>
   <input type="file" name="photo" id="photo"><br>
 
   <label for="summary">summary</label>
-  <textarea name="summary" id="summary" cols="30" rows="10" placeholder="tell us about your group!"></textarea><br>
+  <textarea name="summary" id="summary" cols="30" rows="10" placeholder="tell us about your group!">{{group.summary}}</textarea><br>
 
   <label for="location">Location:</label>
-    <input type="text" name="address" id="address" placeholder="123 this street">
-    <input type="text" name="city" id="city" placeholder="City">
-    <input type="text" name="state" id="state" placeholder="State">
-    <input type="text" name="zipcode" id="zipcode" placeholder="12345">
+    <input type="text" name="address" id="address" value="{{group.location.address}}">
+    <input type="text" name="city" id="city" value="{{group.location.city}}">
+    <input type="text" name="state" id="state" value="{{group.location.state}}">
+    <input type="text" name="zipcode" id="zipcode" value="{{group.location.zipcode}}">
 
   <button>Update</button>
 

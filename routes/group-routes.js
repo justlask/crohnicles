@@ -77,12 +77,33 @@ router.get('/edit/:id', (req,res,next) => {
 })
 
 
+
+router.post('/edit/:id', uploadCloud.single('photo'), (req,res,next) => {
+  let groupObj = {
+    location: {},
+  }
+
+  if (req.file) { groupObj.groupImage = req.file.url};
+  if (req.body.name) groupObj.name = req.body.name;
+  console.log(groupObj)
+  if (req.body.address) groupObj.location.address = req.body.address;
+  if (req.body.city) groupObj.location.city = req.body.city;
+  if(req.body.state) groupObj.location.state = req.body.state;
+  if(req.body.zipcode) groupObj.location.zipcode = req.body.zipcode;
+  if (req.body.summary) groupObj.body = req.body.summary;
+  Group.findByIdAndUpdate(req.params.id, groupObj).then(
+
+    res.redirect(`/groups/${req.params.id}`)
+  ).catch(err => next(err))
+})
+
+
 router.post('/remove/:id/:groupID', (req,res,next) => {
   let memberID = req.params.id
   let groupID = req.params.groupID
   Group.findByIdAndUpdate(groupID, { $pull: { members: memberID }}).then(data => {
     res.redirect(`/groups/${req.params.groupID}`)
-  })
+  }).catch(err => next(err))
 })
 
 

@@ -56,10 +56,12 @@
 
       {{#each posts}}
         <div class="single">
-          <h1>{{title}}</h1>
+          <a href="/post/single/{{id}}"><h1>{{title}}</h1></a>
           <a href="/user/profile/{{authorID}}"><h3>{{author}}</h3></a>
-          <p>{{body}}</p>
+
           <img src="{{image}}" alt="">
+          <p>{{body}}</p>
+        
 
           {{#if iAmAdmin}}
             <form action="/post/edit/{{id}}" method="GET">
