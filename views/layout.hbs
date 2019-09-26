@@ -5,29 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>{{title}}</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css">
   <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
 <body>
   <header>
-    <a href="/">crohnicle</a>
+    <a href="/" id="crohniclename">crohnicle</a>
 
     <nav>
       {{#if user}}
-        <a href="/user/profile">Profile</a>
-        <a href="/groups">Groups</a>
-        <a href="/events">Events</a>
+        <a href="/user/profile">profile</a>
+        <a href="/groups">groups</a>
+        <a href="/events">events</a>
         <form action="/user/logout" method="POST">
-          <button>Logout</button>
+          <button>logout</button>
         </form>
       {{/if}}
       {{#unless user}}
-        <a href="/user/signup">Signup</a>
-        <a href="/user/login">Login</a>
+        <a href="/user/signup">signup</a>
+        <a href="/user/login">login</a>
       {{/unless}}
     </nav>
   </header>
 
   {{{body}}}
+
+  <footer>
+    <p>made with <i class="fas fa-heart"></i> by JustLask</p>
+  </footer>
 
   <script src="/javascripts/script.js"></script>
 </body>

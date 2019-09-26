@@ -1,6 +1,14 @@
-<h1>Crohnicles of {{user.username}}</h1>
 <main>
-  <aside class="dash">
+  <div>
+    <div class="links">
+      <a href="/user/friends">My Friends</a><br>
+      <a href="/user/findfriends">Find Friends</a><br>
+      <a href="/user/groups">My Groups</a><br>
+      <a href="/groups">Find Groups</a><br>
+      <a href="/events">Find Events</a><br>
+      <a href="/user/edit">Edit Profile</a>
+    </div>
+    <h1>crohnicles of {{user.username}}</h1>
     <img src="{{user.profilePic}}" alt="Profile Pic" id="profilePic"><br>
     <ul>
       <li>Conditions:</li>
@@ -14,14 +22,10 @@
         <li>{{this}}</li>
       {{/each}}
     </ul>
+  </div>
 
-    <a href="/user/friends">My Friends</a><br>
-    <a href="/user/findfriends">Find Friends</a><br>
-    <a href="/user/groups">My Groups</a><br>
-    <a href="/groups">Find Groups</a><br>
-    <a href="/events">Find Events</a><br>
-    <a href="/user/edit">Edit Profile</a>
-  </aside>
+
+
   <div class="body">
     <div>
       <p>{{user.name}}</p>
