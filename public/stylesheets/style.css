@@ -278,12 +278,15 @@ body {
 
 .login form input,
 .user form input,
-.group form input {
+.group form input,
+#illnessinput,
+#medicationinput {
   padding: 5px 10px;
   margin: 5px 0px;
   border-radius: 12px;
   font-family: 'Poppins';
-  font-size: 20px; }
+  font-size: 20px;
+  width: 100%; }
 
 .user form select {
   padding: 5px 10px;

@@ -201,20 +201,33 @@ router.get('/events', (req,res,next) => {
 })
 
 
+router.post('/filterfriends', (req,res,next) => {
+  let illnessFilter = req.body.illness
+  let medicationFilter = req.body.medication
 
-// const eventSchema = new Schema({
-//   name: String,
-//   eventImage: String,
-//   admin: {type: Schema.Types.ObjectId, ref: 'User'},
-//   summary: String,
-//   members: [ { type : Schema.Types.ObjectId, ref: 'User' } ],
-//   location: {
-//     address: {type: String},
-//     city: {type: String},
-//     state: {type: String},
-//     zipcode: {type: String}
-//   },
-//   comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}]
-// })
+
+  if (medicationFilter && illnessFilter) {
+    User.find({ $or: [ { medications: { $in: medicationFilter } }, { illness: {$in: illnessFilter}}]}).then(users => {
+      res.render('user-views/findfriends' , {users: users})
+    })
+  }
+
+  if (illnessFilter) {
+    User.find({illness: {$in: illnessFilter}}).then(users => {
+      console.log(users)
+      res.render('user-views/findfriends' , {users: users})
+    })
+  }
+
+  if (medicationFilter) {
+    User.find({medications: {$in: medicationFilter}}).then(users => {
+      console.log(users)
+      res.render('user-views/findfriends' , {users: users})
+    })
+  }
+})
+
 
 module.exports = router;
+
+
