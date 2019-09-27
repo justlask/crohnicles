@@ -3,35 +3,42 @@
     <h1>edit {{group.name}}</h1>
   </div>
 
-<form action="/groups/edit/{{group.id}}" method="POST" enctype="multipart/form-data">
+<div class="group">
+  
+    <form action="/groups/edit/{{group.id}}" method="POST" enctype="multipart/form-data" class="group">
+    <div>
+      <input type="file" name="photo" id="photo" class="inputfile" />
+      <label for="photo">add a photo</label>
+    </div>
+
+    <label for="name">name</label>
+    <input type="text" name="name" id="name" placeholder="group name" value="{{group.name}}"><br>
 
 
-  <label for="name">name</label>
-  <input type="text" name="name" id="name" placeholder="group name" value="{{group.name}}"><br>
+    <label for="summary">summary</label>
+    <textarea name="summary" id="summary" cols="30" rows="10" placeholder="tell us about your group!">{{group.summary}}</textarea><br>
 
-  <label for="photo">group image</label>
-  <input type="file" name="photo" id="photo"><br>
+    <label for="location">Location:</label>
+      <input type="text" name="address" id="address" value="{{group.location.address}}"><br>
+      <input type="text" name="city" id="city" value="{{group.location.city}}">
+      <input type="text" name="state" id="state" value="{{group.location.state}}"><br>
+      <input type="text" name="zipcode" id="zipcode" value="{{group.location.zipcode}}"><br>
 
-  <label for="summary">summary</label>
-  <textarea name="summary" id="summary" cols="30" rows="10" placeholder="tell us about your group!">{{group.summary}}</textarea><br>
+    <div class="flexright">
+      <button class="buttony pushright" >Update</button>
+    </div>
 
-  <label for="location">Location:</label>
-    <input type="text" name="address" id="address" value="{{group.location.address}}">
-    <input type="text" name="city" id="city" value="{{group.location.city}}">
-    <input type="text" name="state" id="state" value="{{group.location.state}}">
-    <input type="text" name="zipcode" id="zipcode" value="{{group.location.zipcode}}">
+  </form>
+</div>
 
-  <button>Update</button>
-
-</form>
 <div>
     {{#if admin}}
     <ul>
       {{#each group.members}}
           <li>
-            {{username}}
               <form action="/groups/remove/{{id}}/{{../group._id}}" method="POST">
-              <button>remove</button>
+              {{username}}
+              <button class="buttony-small">remove</button>
             </form>
           </li>
       {{/each}}
