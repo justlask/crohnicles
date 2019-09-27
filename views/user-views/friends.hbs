@@ -1,16 +1,22 @@
-<h1>{{user.username}}'s friends</h1>
+<main>
+  <div class="heading">
+  <h1>{{user.username}}'s friends</h1>
+</div>
 
 <div class="users">
 
 {{#each friends}}
   <div class="user">
+    <p>{{name}}</p>
     <a href="/user/profile/{{id}}">{{username}}</a>
     <img src="{{profilePic}}" alt="" class="userPic">
+    <p>{{bio}}</p>
     <form action="/user/profile/removefriend" method="POST">
       <input type="hidden" name="friendID" value={{id}}>
-      <button>Remove Friend</button>
+      <button class="buttony">remove</i></button>
     </form>
   </div>
 
 {{/each}}
 </div>
+</main>

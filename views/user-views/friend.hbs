@@ -1,30 +1,45 @@
-<h1>Crohnicles of <a href="/user/profile/{{user.id}}">{{user.username}}</a></h1>
+<main>
+  <div class="heading">
+      <h1>Crohnicles of <a href="/user/profile/{{user.id}}">{{user.username}}</a></h1>
+  </div>
+  <div class="userinfo">
+        <div>
+      <img src="{{user.profilePic}}" alt="Profile Pic" id="profilePic"><br>
 
-    <img src="{{user.profilePic}}" alt="Profile Pic" id="profilePic"><br>
-
-    <p>{{user.name}}</p>
-    <p>{{user.bio}}</p>
-
-    <ul>
-      <li>Conditions:</li>
+      <p>{{user.name}}</p>
+      <p>{{user.bio}}</p>
+    </div>
+   <div>
+      <ul>
+    {{#if user.illness}}
+          <li><b>Conditions:</b></li>
       {{#each user.illness}}
         <li>{{this}}</li>
       {{/each}}
     </ul>
-    <ul>
-      <li>Medications</li>
+    {{/if}}
+    {{#if user.medications}}
+        <ul>
+      <li><b>Medications:</b></li>
       {{#each user.medications}}
         <li>{{this}}</li>
       {{/each}}
     </ul>
+    {{/if}}
+   </div>
+  </div>
 
-{{#each posts}}
+<div class="allposts">
+  {{#each posts}}
   <div class="single">
     <h1>{{title}}</h1>
+    <p>{{date}}</p>
     <a href="/user/profile/{{authorID}}"><h3>{{author}}</h3></a>
-    <p>{{body}}</p>
     <img src="{{image}}" alt="">
+        <p>{{body}}</p>
   </div>
 {{/each}}
+</div>
 
+</main>
 

@@ -1,9 +1,11 @@
 <main>
   <h1>crohnicles of {{user.username}}</h1>
   <div class="userinfo">
-    <div>
-      <img src="{{user.profilePic}}" alt="Profile Pic" id="profilePic"><br>
-    </div>
+    {{#if user.profilePic}}
+      <div>
+        <img src="{{user.profilePic}}" alt="Profile Pic" id="profilePic"><br>
+      </div>
+    {{/if}}
     <div>
       <p>{{user.name}}</p>
       <p>{{user.bio}}</p>
@@ -33,12 +35,12 @@
         </form> 
     </div>
 
-    <div>
+    <div class="allposts">
 
       {{#each posts}}
         <div class="single">
           <a href="/post/single/{{id}}"><h1>{{title}}</h1></a>
-                    <p>{{date}}</p>
+          <p>{{date}}</p>
           <a href="/user/profile/{{authorID}}"><h3>{{author}}</h3></a>
           <img src="{{image}}" alt="">
           <p>{{body}}</p>
@@ -54,8 +56,6 @@
             </form>
           </div>
           {{/if}}
-
-          
         </div>
       {{/each}}
     </div>

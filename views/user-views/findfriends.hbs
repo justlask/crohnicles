@@ -1,14 +1,20 @@
-<div class="users">
+<main>
+  <div class="heading">
+    <h1>find friends</h1>
+  </div>
+  <div class="users">
 
 {{#each users}}
   <div class="user">
+    <p>{{name}}</p>
     <a href="/user/profile/{{id}}">{{username}}</a>
     <img src="{{profilePic}}" alt="" class="userPic">
     <form action="/user/profile/addfriend" method="POST">
       <input type="hidden" name="friendID" value={{id}}>
-      <button>Add Friend</button>
+      <button class="buttony">add</button>
     </form>
   </div>
 
-{{/each}}
+  {{/each}}
 </div>
+</main>
