@@ -1,34 +1,66 @@
-<h1>Crohnicles of the group <a href="/groups/{{group.id}}">{{group.name}}</a></h1>
+<main>
+  <div class="heading">
+  <h1>Crohnicles of the group <a href="/groups/{{group.id}}">{{group.name}}</a></h1>
+  </div>
 
 <div class="body">
       <div class="single">
-
+        <h1>{{group.name}}</h1>
         <img src="{{group.groupImage}}" alt="">
         <p>{{group.summary}}</p>
-        <a href="/user/profile/{{group.admin.id}}"><p>{{group.admin.username}}</p></a>
+        <p>admin: <a href="/user/profile/{{group.admin.id}}">{{group.admin.username}}</a></p>
         <ul>
+          <li>members:</li>
         {{#each group.members}}
           <a href="/user/profile/{{id}}"><li>{{username}}</li></a>
         {{/each}}
         </ul>
-        {{group.location.address}}
+        <address>
+        {{group.location.address}}<br>
         {{group.location.city}}, {{group.location.state}} {{group.location.zipcode}}
+        </address>
 
 
 
         {{#unless isMember}}
-        <form action="/groups/join/{{group.id}}" method="POST">
-            <button>Join</button>
-        </form>
+        <div class="pushright">
+          <form action="/groups/join/{{group.id}}" method="POST">
+              <button class="buttony">join</button>
+          </form>
+        </div>
         {{/unless}}
 
-        <div>
+        {{#if isMember}}
+          <div class="pushright">
+          <form action="/groups/remove/{{user.id}}/{{group.id}}" method="POST">
+            <button class="buttony">leave group</button>
+          </form>
+          </div>
+        {{/if}}
+
           {{#if admin}}
-            <a href="/groups/edit/{{group.id}}">Edit</a>
-          {{/if}}
+        <div class="pushright">
+            <a href="/groups/edit/{{group.id}}" class="buttony">Edit</a>
         </div>
+          {{/if}}
       </div>
-
-
-
 </div>
+</main>
+
+{{!-- 
+        <p>group admin: <a href="/user/profile/{{admin.id}}">{{admin.username}}</a></p>
+        <ul>
+          <li>members:</li>
+        {{#each members}}
+          <a href="/user/profile/{{id}}"><li>{{username}}</li></a>
+        {{/each}}
+        </ul>
+        {{location.address}}
+        {{location.city}}, {{location.state}} {{location.zipcode}}
+
+    {{#if isMember}}
+        <form action="/groups/remove/{{../user.id}}/{{id}}" method="POST">
+          <button class="buttony">leave group</button>
+        </form>
+
+    {{/if}} --}}

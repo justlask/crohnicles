@@ -30,6 +30,11 @@ footer {
   font-weight: bold;
 }
 
+.pushright {
+  align-self: flex-end;
+  margin: 10px 0px;
+}
+
 nav a,
 .links a {
   color:pink;
@@ -181,7 +186,11 @@ body {
   color: white;
   text-shadow: 1px 3px 2px black;
   text-decoration: none;
+}
 
+.user img {
+  height: 200px;
+  width: auto;
 }
 
 .single a,
@@ -306,7 +315,7 @@ main {
   display: none;
   position: absolute;
   background-color: #f1f1f1;
-  min-width: 160px;
+  min-width: 200px;
   overflow: auto;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;

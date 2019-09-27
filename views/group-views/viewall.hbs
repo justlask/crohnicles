@@ -1,23 +1,18 @@
-<a href="/groups/create">Create A Group</a>
+<main>
+  <div class="heading">
+    <h1>find a group</h1>
+  </div>
 
-
-
-<div class="body">
+<div class="users">
     {{#each groups}}
-      <div class="single">
-      <div>
-        <a href="/groups/{{id}}"><h1>{{name}}</h1></a>
-        <img src="{{groupImage}}" alt="">
+      <div class="user">
+        <a href="/groups/{{id}}">{{name}}</a>
+        {{#if groupImage}}
+        <img src="{{groupImage}}" alt="" class="group picture">
+        {{/if}}
+        <sub>{{location.city}}, {{location.state}}</sub>
         <p>{{summary}}</p>
-        <a href="/user/profile/{{admin.id}}"><p>{{admin.username}}</p></a>
-        <ul>
-        {{#each members}}
-          <a href="/user/profile/{{id}}"><li>{{username}}</li></a>
-        {{/each}}
-        </ul>
-        {{location.address}}
-        {{location.city}}, {{location.state}} {{location.zipcode}}
       </div>
-      </div> 
     {{/each}}
-</div>
+  </div>
+</main>
