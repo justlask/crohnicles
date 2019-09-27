@@ -13,7 +13,12 @@ const eventSchema = new Schema({
     state: {type: String},
     zipcode: {type: String}
   },
-  comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}]
+  comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}],
+  eventDate: {
+    month: {type: String},
+    day: {type: String},
+    year: {type: String}
+  }
 })
 
 

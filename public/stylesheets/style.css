@@ -278,7 +278,21 @@ body {
 
 .login form input,
 .user form input,
-.group form input,
+.group form input {
+  padding: 5px 10px;
+  margin: 5px 0px;
+  border-radius: 12px;
+  font-family: 'Poppins';
+  font-size: 20px; }
+
+.badge {
+  padding: 5px 15px;
+  background-color: blue;
+  font-size: 18px;
+  border-radius: 8px;
+  color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
+
 #illnessinput,
 #medicationinput {
   padding: 5px 10px;

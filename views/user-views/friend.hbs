@@ -4,9 +4,12 @@
   </div>
   <div class="friendinfo">
     <div>
-      <img src="{{user.profilePic}}" alt="Profile Pic" id="profilePic"><br>
+      {{#if user.profilePic}}
+        <img src="{{user.profilePic}}" alt="Profile Pic" id="profilePic"><br>
+      {{/if}}
 
       <p>{{user.name}}</p>
+      <span class="badge"><b>{{user.type}}</b></span>
       <p>{{user.bio}}</p>
     </div>
    <div>
