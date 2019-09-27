@@ -7,7 +7,7 @@ const postSchema = new Schema({
   authorID: { type : Schema.Types.ObjectId, ref: 'User' },
   body: String,
   image: String,
-  comments: [{ body: String, date: Date }],
+  comments: [{ type: Schema.Types.ObjectId, ref: "Comment"}],
   date: { type: Date, default: Date.now },
   type: { type: String, enum : ["Personal", "Health"]},
   hidden: Boolean,

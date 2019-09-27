@@ -43,8 +43,38 @@
             <a href="/groups/edit/{{group.id}}" class="buttony">Edit</a>
         </div>
           {{/if}}
+
+              {{#if isMember}}
+
+    <div id="addcomment">
+        <form action="/groups/comment/{{group.id}}" method="POST">
+          <div>          
+            <label for="content"></label>
+            <textarea name="content" id="content" cols="30" rows="10" placeholder="add a comment to the group."></textarea><br>
+          </div>
+
+          <button class="buttony">share</button>
+        </form> 
+    </div>
+
+    {{/if}}
+
+
+
+
+    <div id="comments">
+        <h1>group comments</h1>
+        {{#each group.comments}}
+            <div class="comment">
+                      <a href="/user/profile/{{authorID}}"><p>{{author}}</p></a>
+          <p>{{this.body}}</p>
+            </div>
+        {{/each}}
       </div>
+  </div>
+      
 </div>
+
 </main>
 
 {{!-- 

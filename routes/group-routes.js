@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User  = require('../models/Users')
 const Group = require('../models/Groups')
+const Comment = require('../models/Comments')
 const uploadCloud = require('../config/cloudinary.js');
 
 
@@ -40,7 +41,7 @@ router.post('/create',uploadCloud.single('photo'), (req,res,next) => {
 
 router.get('/:id', (req,res,next) => {
 
-  Group.findById(req.params.id).populate('members').populate('admin').then(data => {
+  Group.findById(req.params.id).populate('members').populate('admin').populate('comments').then(data => {
 
     let iAmAdmin = false;
 
@@ -58,6 +59,8 @@ router.get('/:id', (req,res,next) => {
     res.render('group-views/viewone', {group: data, admin: iAmAdmin, isMember: isMember})
   }).catch(err => next(err))
 })
+
+
 
 
 
@@ -123,4 +126,32 @@ router.post('/join/:id', (req,res,next) => {
   )
 })
 
+
+
+
+//messing around with adding a "chat" feature to groups
+//create a comment in the comment schema
+//save comment id to group.comments array
+//on group page load, query all comments with that post id
+router.post('/comment/:id', (req,res,next) => {
+
+  let newComment = {
+    author: req.user.username,
+    authorID: req.user.id,
+    groupID: req.params.id,
+    body: req.body.content,
+    date: new Date,
+  }
+  console.log(newComment)
+  Comment.create(newComment).then(data => {
+    Group.findByIdAndUpdate( data.groupID, {$push: {comments: data.id}}).then(
+      data => {
+        res.redirect(`/groups/${data.id}`)
+      })
+  })
+})
+
+
+
+// res.send(data.groupID, data.id)
 module.exports = router;
