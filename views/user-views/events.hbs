@@ -7,7 +7,7 @@
     {{#each events}}
       <div class="user">
         <a href="/events/{{id}}">{{name}}</a>
-        <img src="{{eventImage}}" alt="" class="event picture">
+        <img src="{{eventImage}}" alt="" class="userPic">
         <sub>{{location.city}}, {{location.state}}</sub>
         <sub>{{summary}}</sub>
         <form action="/events/remove/{{../user.id}}/{{id}}" method="POST">

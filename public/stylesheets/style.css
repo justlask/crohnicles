@@ -60,8 +60,8 @@ body {
   display: flex; }
 
 .body > div img {
-  height: 200px;
-  width: auto; }
+  height: auto;
+  width: 100px; }
 
 .body > div {
   width: 40vw; }
@@ -81,7 +81,7 @@ body {
   border-radius: 12px;
   margin: 10px;
   width: 100%;
-  min-width: 200px;
+  min-width: 300px;
   max-width: 400px; }
 
 .user .buttony {
@@ -104,6 +104,14 @@ body {
   align-items: center;
   justify-content: space-around;
   width: 80vw; }
+
+.userinfo2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100vw;
+  max-width: 600px;
+  min-width: 300px; }
 
 .userinfo {
   display: flex;
@@ -210,8 +218,8 @@ body {
   text-decoration: none; }
 
 .user img {
-  height: 200px;
-  width: auto;
+  height: auto;
+  width: 200px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
 
 .single a,
@@ -410,5 +418,9 @@ ul {
   justify-content: space-around;
   align-items: center;
   width: 100vw; }
+
+.groupImg {
+  height: auto;
+  width: 300px; }
 
 /*# sourceMappingURL=style.css.map */
