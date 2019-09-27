@@ -1,59 +1,36 @@
 <main>
-  <div>
-    <div class="links">
-      <a href="/user/friends">My Friends</a><br>
-      <a href="/user/findfriends">Find Friends</a><br>
-      <a href="/user/groups">My Groups</a><br>
-      <a href="/groups">Find Groups</a><br>
-      <a href="/events">Find Events</a><br>
-      <a href="/user/edit">Edit Profile</a>
+  <h1>crohnicles of {{user.username}}</h1>
+  <div class="userinfo">
+    <div>
+      <img src="{{user.profilePic}}" alt="Profile Pic" id="profilePic"><br>
     </div>
-    <h1>crohnicles of {{user.username}}</h1>
-    <img src="{{user.profilePic}}" alt="Profile Pic" id="profilePic"><br>
-    <ul>
-      <li>Conditions:</li>
-      {{#each user.illness}}
-        <li>{{this}}</li>
-      {{/each}}
-    </ul>
-    <ul>
-      <li>Medications:</li>
-      {{#each user.medications}}
-        <li>{{this}}</li>
-      {{/each}}
-    </ul>
-  </div>
-
-
-
-  <div class="body">
     <div>
       <p>{{user.name}}</p>
       <p>{{user.bio}}</p>
     </div>
+  </div>
+  <div class="body">
 
     <div class="post">
+       <p>Share something...</p>
         <form action="/post/create" method="POST" enctype="multipart/form-data">
-          <p>Share something...</p>
 
-          <label for="type">Type</label>
-          <select name="type" id="type">
-            <option value="Personal">Personal</option>
-            <option value="Health">Health</option>
-          </select><br>
+          <div>
+            <label for="title"></label>
+            <input type="text" name="title" placeholder="give me a title"><br>
+          </div>
+          <div>          
+            <label for="content"></label>
+            <textarea name="content" id="content" cols="30" rows="10" placeholder="tell me something good."></textarea><br>
+          </div>
 
-          <label for="title">Title</label>
-          <input type="text" name="title"><br>
+          <div>
+            <input type="file" name="photo" id="photo" class="inputfile" />
+            <label for="photo">add a photo</label>
+          </div>
 
-          <label for="content">Content</label>
-          <textarea name="content" id="content" cols="30" rows="10"></textarea><br>
-
-          <label for="photo">Add Picture</label>
-          <input type="file" name="photo"><br>
-
-          <button type="submit">submit</button>
-        </form>
-        
+          <button type="submit">share</button>
+        </form> 
     </div>
 
     <div>
@@ -61,19 +38,21 @@
       {{#each posts}}
         <div class="single">
           <a href="/post/single/{{id}}"><h1>{{title}}</h1></a>
+                    <p>{{date}}</p>
           <a href="/user/profile/{{authorID}}"><h3>{{author}}</h3></a>
-
           <img src="{{image}}" alt="">
           <p>{{body}}</p>
         
 
           {{#if iAmAdmin}}
+          <div class="user-buttons">
             <form action="/post/edit/{{id}}" method="GET">
-              <button>Edit</button>
+              <button class="buttony">Edit</button>
             </form>
             <form action="/post/delete/{{id}}" method="POST">
-              <button>delete</button>
+              <button class="buttony">delete</button>
             </form>
+          </div>
           {{/if}}
 
           

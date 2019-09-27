@@ -1,5 +1,16 @@
-document.addEventListener('DOMContentLoaded', () => {
+console.log('sup world')
 
-  console.log('IronGenerator JS imported successfully!');
+document.getElementById('groupsbutton').onclick = (e) => {
+  document.getElementById('groupDropdown').classList.toggle('show')
+}
 
-}, false);
+document.getElementById('friendsbutton').onclick = (e) => {
+  document.getElementById('friendsDropdown').classList.toggle('show')
+}
+document.getElementById('eventsbutton').onclick = (e) => {
+  document.getElementById('eventsDropdown').classList.toggle('show')
+}
+document.getElementById('profilebutton').onclick = (e) => {
+  document.getElementById('profileDropdown').classList.toggle('show')
+}
+

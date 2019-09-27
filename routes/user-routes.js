@@ -81,7 +81,8 @@ router.post('/logout', (req, res, next) => {
 });
 
 router.get('/findfriends', (req,res,next) => {
-  User.find({ id: { $nin: [req.user.id, req.user.friends]} }).then(users => {
+  User.find({ _id: { $nin: req.user.friends, $ne: req.user.id} }).then(users => {
+    console.log
     res.render('user-views/findfriends' , {users: users})
   })
 })

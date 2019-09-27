@@ -11,15 +11,41 @@
 <body>
   <header>
     <a href="/" id="crohniclename">crohnicle</a>
-
     <nav>
       {{#if user}}
-        <a href="/user/profile">profile</a>
-        <a href="/groups">groups</a>
-        <a href="/events">events</a>
-        <form action="/user/logout" method="POST">
+    <div class="links">
+      <div class="dropdown">
+        <button id="groupsbutton" class="dropbtn">groups</button>
+        <div id="groupDropdown" class="dropdown-content">
+          <a href="/user/groups">my groups</a><br>
+          <a href="/groups">find groups</a><br>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button id="friendsbutton" class="dropbtn">friends</button>
+        <div id="friendsDropdown" class="dropdown-content">
+          <a href="/user/friends">my friends</a><br>
+          <a href="/user/findfriends">find friends</a><br>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button id="eventsbutton" class="dropbtn">events</button>
+        <div id="eventsDropdown" class="dropdown-content">
+          <a href="/events">find events</a><br>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button id="profilebutton" class="dropbtn">profile</button>
+        <div id="profileDropdown" class="dropdown-content">
+          <a href="/user/profile">view profile</a>
+          <a href="/user/edit">edit profile</a>
+        </div>
+      </div>
+      <div class="logout">
+       <form action="/user/logout" method="POST">
           <button>logout</button>
         </form>
+      </div>
       {{/if}}
       {{#unless user}}
         <a href="/user/signup">signup</a>
@@ -33,7 +59,11 @@
   <footer>
     <p>made with <i class="fas fa-heart"></i> by JustLask</p>
   </footer>
-
+<script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
   <script src="/javascripts/script.js"></script>
+  
 </body>
 </html>
