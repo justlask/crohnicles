@@ -1,0 +1,101 @@
+<main>
+  <div class="heading">
+  <h1>Crohnicles of the event <a href="/events/{{event.id}}">{{event.name}}</a></h1>
+  </div>
+
+<div class="body">
+
+  <div>
+        <h1>{{event.name}}</h1>
+        <img src="{{event.eventImage}}" alt="">
+        <p>admin: <a href="/user/profile/{{event.admin.id}}">{{event.admin.username}}</a></p>
+        <ul>
+          <li>members:</li>
+        {{#each event.members}}
+          <a href="/user/profile/{{id}}"><li>{{username}}</li></a>
+        {{/each}}
+        </ul>
+        <address>
+        {{event.location.address}}<br>
+        {{event.location.city}}, {{event.location.state}} {{event.location.zipcode}}
+        </address>
+
+
+
+        {{#unless isMember}}
+        <div class="pushright">
+          <form action="/events/join/{{event.id}}" method="POST">
+              <button class="buttony">join</button>
+          </form>
+        </div>
+        {{/unless}}
+
+        {{#if isMember}}
+          <div class="pushright">
+          <form action="/events/remove/{{user.id}}/{{event.id}}" method="POST">
+            <button class="buttony">leave event</button>
+          </form>
+          </div>
+        {{/if}}
+
+          {{#if admin}}
+        <div class="pushright">
+            <a href="/events/edit/{{event.id}}" class="buttony">Edit</a>
+        </div>
+          {{/if}}
+
+        {{#if isMember}}
+  </div>
+
+
+<div class="groupcontent">
+      <p>{{event.summary}}</p>
+      <div id="addcomment">
+        <form action="/events/comment/{{event.id}}" method="POST">
+          <div>          
+            <label for="content"></label>
+            <textarea name="content" id="content" cols="30" rows="10" placeholder="add a comment to the event."></textarea><br>
+          </div>
+
+          <button class="buttony">share</button>
+        </form> 
+    </div>
+
+    {{/if}}
+
+
+
+
+    <div id="comments">
+        <h1>event comments</h1>
+        {{#each event.comments}}
+            <div class="comment">
+              <a href="/user/profile/{{authorID}}"><p><b>{{author}}</b></p></a>
+              <sub>{{date}}</sub>
+          <p>{{this.body}}</p>
+            </div>
+        {{/each}}
+      </div>
+</div>
+      
+</div>
+
+</main>
+
+{{!-- 
+        <p>event admin: <a href="/user/profile/{{admin.id}}">{{admin.username}}</a></p>
+        <ul>
+          <li>members:</li>
+        {{#each members}}
+          <a href="/user/profile/{{id}}"><li>{{username}}</li></a>
+        {{/each}}
+        </ul>
+        {{location.address}}
+        {{location.city}}, {{location.state}} {{location.zipcode}}
+
+    {{#if isMember}}
+        <form action="/events/remove/{{../user.id}}/{{id}}" method="POST">
+          <button class="buttony">leave event</button>
+        </form>
+
+    {{/if}} --}}

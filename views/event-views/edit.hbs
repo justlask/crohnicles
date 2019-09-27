@@ -1,0 +1,48 @@
+<main>
+  <div class="heading">
+    <h1>edit {{event.name}}</h1>
+  </div>
+
+<div class="group">
+  
+    <form action="/events/edit/{{event.id}}" method="POST" enctype="multipart/form-data" class="event">
+    <div>
+      <input type="file" name="photo" id="photo" class="inputfile" />
+      <label for="photo">add a photo</label>
+    </div>
+
+    <label for="name">name</label>
+    <input type="text" name="name" id="name" placeholder="event name" value="{{event.name}}"><br>
+
+
+    <label for="summary">summary</label>
+    <textarea name="summary" id="summary" cols="30" rows="10" placeholder="tell us about your event!">{{event.summary}}</textarea><br>
+
+    <label for="location">Location:</label>
+      <input type="text" name="address" id="address" value="{{event.location.address}}"><br>
+      <input type="text" name="city" id="city" value="{{event.location.city}}">
+      <input type="text" name="state" id="state" value="{{event.location.state}}"><br>
+      <input type="text" name="zipcode" id="zipcode" value="{{event.location.zipcode}}"><br>
+
+    <div class="flexright">
+      <button class="buttony pushright" >Update</button>
+    </div>
+
+  </form>
+</div>
+
+<div>
+    {{#if admin}}
+    <ul>
+      {{#each event.members}}
+          <li>
+              <form action="/events/remove/{{id}}/{{../event._id}}" method="POST">
+              {{username}}
+              <button class="buttony-small">remove</button>
+            </form>
+          </li>
+      {{/each}}
+    </ul>
+  {{/if}}
+</div>
+</main>

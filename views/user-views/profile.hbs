@@ -1,22 +1,26 @@
 <main>
-  <h1>crohnicles of {{user.username}}</h1>
-  <div class="userinfo">
-    {{#if user.profilePic}}
+  <div class="rowit">
+          {{#if user.profilePic}}
       <div>
         <img src="{{user.profilePic}}" alt="Profile Pic" id="profilePic"><br>
       </div>
     {{/if}}
-    <div>
+      <div>
+        <h1>crohnicles of {{user.username}}</h1>
+      </div>
+  </div>
+<div class="">
+    <div class="userinfo">
+
+    {{!-- <div>
       <p>{{user.name}}</p>
       <p>{{user.bio}}</p>
-    </div>
+    </div> --}}
   </div>
-  <div class="body">
 
     <div class="post">
-       <p>Share something...</p>
         <form action="/post/create" method="POST" enctype="multipart/form-data">
-
+       <p>Share something...</p>
           <div>
             <label for="title"></label>
             <input type="text" name="title" placeholder="give me a title"><br>
@@ -34,9 +38,12 @@
           <button type="submit">share</button>
         </form> 
     </div>
+</div>
 
+
+
+  <div class="body">
     <div class="allposts">
-
       {{#each posts}}
         <div class="single">
           <a href="/post/single/{{id}}"><h1>{{title}}</h1></a>

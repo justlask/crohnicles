@@ -7,6 +7,10 @@ header {
   color: white;
 }
 
+
+img {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 nav {
   width: 300px;
   display: flex;
@@ -60,7 +64,28 @@ body {
 .users {
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
 }
+
+.body {
+  display: flex;
+}
+
+.body > div img {
+  height: 200px;
+  width: auto;
+}
+
+.body > div {
+  width: 40vw;
+}
+
+.body a {
+  text-decoration: none;
+  color: black;
+}
+
+
 
 .user {
   display: flex;
@@ -68,7 +93,7 @@ body {
   justify-content: space-between;
   align-items: center;
   text-align: center;
-  padding: 50px;
+  padding-bottom: 20px;
   background-color: #f7f7f7;
   border-radius: 12px;
   margin: 10px;
@@ -96,20 +121,46 @@ body {
 }
 
 
+.rowit {
+  display: flex;
+  padding-top: 50px;
+  align-items: center;
+  justify-content: space-around;
+  width: 80vw;
+
+}
+
 .userinfo {
   display: flex;
+  flex-direction: row;
   justify-content: space-around;
-  width: 70vw;
+  width: 100vw;
+  max-width: 400px;
+}
+
+.friendinfo {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+}
+
+.friendinfo div {
+  max-width: 50vw;
 }
 .post form {
+  margin-top: 50px;
   display: flex;
   flex-direction: column;
+  background-color: #7e6d7b;
   justify-content: space-around;
   align-items: flex-start;
-  background-color: black;
+  color: white;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 12px;
   padding: 15px;
+  width: 70vw;
 }
 
 .post form input {
@@ -122,19 +173,17 @@ body {
 
 .post form textarea {
   background-color: #f7f7f7;
-  width: 70vw;
   margin: 20px 50px;
   font-size: 20px;
   font-family: 'Poppins';
   border-radius: 8px;
   height: 100px;
+  width: 60vw;
 }
 
 .group {
   max-width: 800px;
 }
-
-
 
 .inputfile {
 	width: 0.1px;
@@ -202,6 +251,7 @@ body {
 .user img {
   height: 200px;
   width: auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .single a,
@@ -274,12 +324,15 @@ body {
   background-color: white;
 }
 
+
+
+
 .login form input,
 .user form input,
 .group form input {
   padding: 5px 10px;
   margin: 5px 0px;
-  box-shadow: inset 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
   font-family: 'Poppins';
   font-size: 20px;
 }
@@ -376,16 +429,17 @@ ul {
 }
 
 .comment {
-  background-color: pink;
+  background-color: white;
   padding: 10px;
+  margin: 15px;
   border-radius: 12px;
 }
 
 
 #addcomment div textarea {
   background-color: #f7f7f7;
-  width: 70vw;
-  margin: 20px 50px;
+  width: 100vw;
+  max-width: 500px;
   font-size: 20px;
   font-family: 'Poppins';
   border-radius: 8px;
@@ -399,14 +453,22 @@ ul {
   flex-direction: column;
   justify-content: space-around;
   align-items: flex-start;
-  background-color: black;
+  background-color: #7e6d7b;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 12px;
-  padding: 15px;
   margin-top: 20px;
+  padding: 25px;
 }
 
 
 #addcomment form button {
   align-self: flex-end;
+}
+
+
+.userhead {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100vw;
 }

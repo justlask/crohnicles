@@ -32,13 +32,16 @@
       <div class="dropdown">
         <button id="eventsbutton" class="dropbtn">events</button>
         <div id="eventsDropdown" class="dropdown-content">
+          <a href="/user/events">my events</a>
           <a href="/events">find events</a><br>
+          <a href="/events/create">create an event</a>
         </div>
       </div>
       <div class="dropdown">
         <button id="profilebutton" class="dropbtn">profile</button>
         <div id="profileDropdown" class="dropdown-content">
-          <a href="/user/profile">view profile</a>
+          <a href="/user/profile">view dashboard</a>
+          <a href="/user/profile/{{user.id}}">view profile</a>
           <a href="/user/edit">edit profile</a>
         </div>
       </div>

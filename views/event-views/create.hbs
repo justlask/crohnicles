@@ -1,21 +1,34 @@
-<h1>CREATE An event</h1>
+<main>
+  <div class="heading">
+  <h1>create a event</h1>
+  </div>
 
-<form action="/events/create" method="POST" enctype="multipart/form-data">
-  <label for="name">name</label>
-  <input type="text" name="name" id="name" placeholder="event name" required><br>
+<div class="group">
+  
+    <form action="/events/create" method="POST" enctype="multipart/form-data" class="event">
+    <div>
+      <input type="file" name="photo" id="photo" class="inputfile" />
+      <label for="photo">add a photo</label>
+    </div>
 
-  <label for="photo">event image</label>
-  <input type="file" name="photo" id="photo"><br>
+    <label for="name">name</label>
+    <input type="text" name="name" id="name" placeholder="event name"><br>
 
-  <label for="summary">summary</label>
-  <textarea name="summary" id="summary" cols="30" rows="10" placeholder="tell us about your event!" required></textarea><br>
 
-  <label for="location">Location:</label>
-    <input type="text" name="address" id="address" placeholder="123 this street" required>
-    <input type="text" name="city" id="city" placeholder="City" required>
-    <input type="text" name="state" id="state" placeholder="State" required>
-    <input type="text" name="zipcode" id="zipcode" placeholder="12345" required>
+    <label for="summary">summary</label>
+    <textarea name="summary" id="summary" cols="30" rows="10" placeholder="tell us about your event!"></textarea><br>
 
-  <button>Create</button>
+    <label for="location">Location:</label>
+      <input type="text" name="address" id="address" placeholder="street"><br>
+      <input type="text" name="city" id="city" placeholder="city">
+      <input type="text" name="state" id="state" placeholder="state"><br>
+      <input type="text" name="zipcode" id="zipcode" placeholder="zipcode"><br>
 
-</form>
+    <div class="flexright">
+      <button class="buttony pushright">create</button>
+    </div>
+
+  </form>
+</div>
+
+</main>

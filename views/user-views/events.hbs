@@ -1,17 +1,19 @@
 <main>
   <div class="heading">
-    <h1>find an event</h1>
+    <h1>{{user.username}}'s events</h1>
   </div>
 
 <div class="users">
     {{#each events}}
       <div class="user">
         <a href="/events/{{id}}">{{name}}</a>
-        {{#if eventImage}}
         <img src="{{eventImage}}" alt="" class="event picture">
-        {{/if}}
         <sub>{{location.city}}, {{location.state}}</sub>
-        <p>{{summary}}</p>
+        <sub>{{summary}}</sub>
+        <form action="/events/remove/{{../user.id}}/{{id}}" method="POST">
+          <button class="buttony">leave event</button>
+        </form>
+
       </div>
     {{/each}}
   </div>

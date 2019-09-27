@@ -5,6 +5,7 @@ const bcrypt     = require("bcryptjs");
 const passport = require("passport");
 const Post     = require('../models/Posts')
 const Group     = require('../models/Groups')
+const Event     = require('../models/Events')
 
 const uploadCloud = require('../config/cloudinary.js');
 
@@ -189,5 +190,31 @@ router.get('/groups', (req,res,next) => {
     res.render('user-views/groups' , {groups: data})
   })
 })
+
+
+router.get('/events', (req,res,next) => {
+  console.log(req.user.id)
+  Event.find({ members: { $in: req.user.id} }).then(data => {
+    console.log(data)
+    res.render('user-views/events' , {events: data})
+  })
+})
+
+
+
+// const eventSchema = new Schema({
+//   name: String,
+//   eventImage: String,
+//   admin: {type: Schema.Types.ObjectId, ref: 'User'},
+//   summary: String,
+//   members: [ { type : Schema.Types.ObjectId, ref: 'User' } ],
+//   location: {
+//     address: {type: String},
+//     city: {type: String},
+//     state: {type: String},
+//     zipcode: {type: String}
+//   },
+//   comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}]
+// })
 
 module.exports = router;

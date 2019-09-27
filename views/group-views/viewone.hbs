@@ -4,10 +4,10 @@
   </div>
 
 <div class="body">
-      <div class="single">
+
+  <div>
         <h1>{{group.name}}</h1>
         <img src="{{group.groupImage}}" alt="">
-        <p>{{group.summary}}</p>
         <p>admin: <a href="/user/profile/{{group.admin.id}}">{{group.admin.username}}</a></p>
         <ul>
           <li>members:</li>
@@ -44,9 +44,13 @@
         </div>
           {{/if}}
 
-              {{#if isMember}}
+        {{#if isMember}}
+  </div>
 
-    <div id="addcomment">
+
+<div class="groupcontent">
+      <p>{{group.summary}}</p>
+      <div id="addcomment">
         <form action="/groups/comment/{{group.id}}" method="POST">
           <div>          
             <label for="content"></label>
@@ -66,12 +70,13 @@
         <h1>group comments</h1>
         {{#each group.comments}}
             <div class="comment">
-                      <a href="/user/profile/{{authorID}}"><p>{{author}}</p></a>
+              <a href="/user/profile/{{authorID}}"><p><b>{{author}}</b></p></a>
+              <sub>{{date}}</sub>
           <p>{{this.body}}</p>
             </div>
         {{/each}}
       </div>
-  </div>
+</div>
       
 </div>
 

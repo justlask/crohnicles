@@ -3,7 +3,7 @@ const Schema    = mongoose.Schema;
 
 const eventSchema = new Schema({
   name: String,
-  groupImage: String,
+  eventImage: String,
   admin: {type: Schema.Types.ObjectId, ref: 'User'},
   summary: String,
   members: [ { type : Schema.Types.ObjectId, ref: 'User' } ],
@@ -13,6 +13,7 @@ const eventSchema = new Schema({
     state: {type: String},
     zipcode: {type: String}
   },
+  comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}]
 })
 
 
